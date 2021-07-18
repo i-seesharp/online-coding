@@ -3,7 +3,10 @@ import SignUp from "./SignUp";
 import Dashboard from "./Dashboard";
 import Landing from "./Landing";
 import Problem from "./Problem";
+import NotFound from "./NotFound";
+
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 class App extends React.Component {
     render() {
         return(
@@ -13,7 +16,7 @@ class App extends React.Component {
                     <Route exact path="/dashboard"><Dashboard /></Route>
                     <Route exact path="/signup"><SignUp /></Route>
                     <Route exact path="/problem"><Problem /></Route>
-                    <Route path="*"><h1>{404}</h1></Route>
+                    <Route path="*"><NotFound /></Route>
                 </Switch>
             </Router>
         );
