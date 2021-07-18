@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 import { api } from "./variables";
+import SignUp from "./SignUp";
+
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -34,6 +36,7 @@ class App extends React.Component {
         }
     }
     render() {
+        /*
         console.log(this.props._locals);
         const logIn =  (
             <div>
@@ -55,6 +58,8 @@ class App extends React.Component {
         );
         if(this.state.loggedIn) return logOut;
         return logIn;
+        */
+       return <SignUp />
     }
     componentDidMount() {
         axios.get(api+"/authenticated", {withCredentials : true}).then(res => res.data)

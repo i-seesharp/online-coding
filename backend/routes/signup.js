@@ -13,10 +13,10 @@ router.post("/", (req, res) => {
     const password = req.body.password.trim();
     const confirm = req.body.confirm.trim();
     const flashMessages = [];
-    if(username.length < 4) flashMessages.push("Username needs to be more than 4 characters.");
+    if(username.length < 4) flashMessages.push("Username needs to be atleast 4 characters long.");
     if(password.length < 6) flashMessages.push("Password needs to be atleast 6 characters long.");
     if(password !== confirm) flashMessages.push("Passwords do not match.");
-
+    if(flashMessages.length > 0) return res.json({ msg : "failure", flash : flashMessages });
     client.connect(database, (err, db) => {
         if(err){
             db.close();
@@ -33,7 +33,7 @@ router.post("/", (req, res) => {
             if(result !== undefined){
                 flashMessages.push("Username has already been taken.");
                 db.close();
-                return res.status(500).json({ msg: "failure" , flash : flashMessages });
+                return res.status(200).json({ msg: "failure" , flash : flashMessages });
             }
             let document = {username : username, password : password};
             dbo.collection(collection).insertOne(document, (err, result) => {
