@@ -8,7 +8,7 @@ class App extends React.Component {
         this.socket = io("http://localhost:5000/");
     }
     render() {
-        return <h1>{this.state.title}</h1>
+        return <h1>{this.state.text}</h1>
     }
 }
 
