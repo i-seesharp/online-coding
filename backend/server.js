@@ -28,11 +28,6 @@ const loginRoute = path.join(__dirname, "routes", "login.js");
 const logoutRoute = path.join(__dirname, "routes", "logout.js");
 const authenRoute = path.join(__dirname, "routes", "authenticated.js");
 
-app.use((req, res, next) => {
-    res.locals.flash = "Hello";
-    next();
-});
-
 app.use("/", require(homeRoute));
 app.use("/login", require(loginRoute));
 app.use("/logout", require(logoutRoute));
