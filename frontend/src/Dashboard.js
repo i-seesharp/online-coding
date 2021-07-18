@@ -17,7 +17,7 @@ class Dashboard extends React.Component {
             if(data.msg === "success"){
                 this.setState({username : data.username, display : true });
             }else{
-                window.location.href = "/signup";
+                window.location.href = "/";
             }
         })
     }
