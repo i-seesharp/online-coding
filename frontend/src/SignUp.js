@@ -20,6 +20,7 @@ class SignUp extends React.Component {
             }, { withCredentials : true }).then(res => res.data).then(data => {
                 if(data.msg === "success"){
                     console.log(data);
+                    window.location.href = "/dashboard";
                 }else{
                     this.setState({ username: "", password: "", confirm: "", flashMessages: data.flash });
                 }
