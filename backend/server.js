@@ -29,7 +29,13 @@ app.use(session({
     saveUninitialized: false
 }));
 
-io.on("connection", socket => console.log(socket.id));
+const homeRoute = path.join(__dirname, "routes", "home.js");
+const loginRoute = path.join(__dirname, "routes", "login.js");
+const logoutRoute = path.join(__dirname, "routes", "logout.js");
+
+app.use("/", require(homeRoute));
+app.use("/login", require(loginRoute));
+app.use("/logout", require(logoutRoute));
 
 server.listen(PORT, () => {
     console.log("Listening on port : "+PORT);
