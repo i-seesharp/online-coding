@@ -5,18 +5,11 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const socketio = require("socket.io");
-const { cookie } = require("./variables");
 const variables = require(path.join(__dirname, "variables.js"));
 const app = express();
 const server = http.createServer(app);
 const sessionStore = session.MemoryStore();
 const PORT = process.env.PORT || variables.port;
-const io = socketio(server, {
-    cors: {
-        credentials: variables.credentials,
-        origin: variables.origin
-    }
-});
 
 app.use(cors({ credentials: variables.credentials, origin: variables.origin }));
 app.use(express.json());
