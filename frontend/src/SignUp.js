@@ -5,7 +5,7 @@ import { api } from "./variables";
 class SignUp extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {username: "", password: "", confirm: "", flashMessages: []};
+        this.state = {username: "", password: "", confirm: "", flashMessages: [], display: false};
         this.handleChange = (e) => {
             const field = e.target.name;
             const value = e.target.value;
@@ -29,6 +29,7 @@ class SignUp extends React.Component {
     }
     render() {
         const flashes = this.state.flashMessages.map((message, index) => <li key={index}>{message}</li>);
+        if(this.state.display !== true) return <React.Fragment></React.Fragment>;
         return (
             <div>
                 <ul>{flashes}</ul>
@@ -46,6 +47,13 @@ class SignUp extends React.Component {
                 </form>
             </div>
         );
+    }
+    componentDidMount() {
+        axios.get(api+"/authenticated", {withCredentials : true }).then(res => res.data)
+        .then(data => {
+            if(data.msg === "success") window.location.href = "/";
+            else this.setState({ display : true });
+        });
     }
 }
 
