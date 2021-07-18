@@ -3,7 +3,8 @@ const variables = {
     credentials: true,
     cookie: "sOmEsEcReT",
     session: "sOmEsEcReT",
-    port: 5000
+    port: 5000,
+    database: "mongodb://localhost:27017/"
 }
 
 module.exports = variables;

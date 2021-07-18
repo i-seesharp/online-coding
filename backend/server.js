@@ -4,12 +4,13 @@ const cors = require("cors");
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
-const socketio = require("socket.io");
+const client = require("mongodb").MongoClient;
 const variables = require(path.join(__dirname, "variables.js"));
 const app = express();
 const server = http.createServer(app);
 const sessionStore = session.MemoryStore();
 const PORT = process.env.PORT || variables.port;
+const database = variables.database;
 
 app.use(cors({ credentials: variables.credentials, origin: variables.origin }));
 app.use(express.json());
@@ -25,10 +26,17 @@ app.use(session({
 const homeRoute = path.join(__dirname, "routes", "home.js");
 const loginRoute = path.join(__dirname, "routes", "login.js");
 const logoutRoute = path.join(__dirname, "routes", "logout.js");
+const authenRoute = path.join(__dirname, "routes", "authenticated.js");
+
+app.use((req, res, next) => {
+    res.locals.flash = "Hello";
+    next();
+});
 
 app.use("/", require(homeRoute));
 app.use("/login", require(loginRoute));
 app.use("/logout", require(logoutRoute));
+app.use("/authenticated", require(authenRoute));
 
 server.listen(PORT, () => {
     console.log("Listening on port : "+PORT);
