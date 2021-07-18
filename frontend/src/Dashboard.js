@@ -6,10 +6,21 @@ class Dashboard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {username : "", display: false};
+        this.logOut = (e) => {
+            e.preventDefault();
+            axios.get(api+"/logout", { withCredentials : true }).then(res => res.data)
+            .then(data => window.location.href = "/");
+        }
     }
     render() {
         if(this.state.display !== true) return <React.Fragment></React.Fragment>;
-        return <h1>Welcome {this.state.username}</h1>;
+        return (
+            <div>
+                <h1>Welcome {this.state.username}</h1>
+                <br></br>
+                <button onClick={this.logOut}>Log Out</button>
+            </div>
+        );
     }
     componentDidMount() {
         axios.get(api+"/authenticated", {withCredentials : true}).then(res => res.data)
