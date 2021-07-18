@@ -43,6 +43,8 @@ router.post("/", (req, res) => {
                 }
                 db.close();
                 console.log("Just inserted : " + username);
+                req.session.username = username;
+                req.session.authenticated = true;
                 return res.status(200).json({ msg : "success", username : username });
             });
         });
