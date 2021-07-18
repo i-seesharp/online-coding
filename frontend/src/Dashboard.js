@@ -19,6 +19,15 @@ class Dashboard extends React.Component {
                 <h1>Welcome {this.state.username}</h1>
                 <br></br>
                 <button onClick={this.logOut}>Log Out</button>
+                <div>
+                    <h2>Statistics</h2>
+                </div>
+                <div>
+                    <h2>History</h2>
+                </div>
+                <div>
+                    <h2>Problems</h2>
+                </div>
             </div>
         );
     }
