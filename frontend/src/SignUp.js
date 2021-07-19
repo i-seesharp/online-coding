@@ -6,7 +6,7 @@ import "./index.css";
 class SignUp extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {username: "", password: "", confirm: "", flashMessages: [], display: false};
+        this.state = {username: "", password: "", confirm: "", flashMessages: []};
         this.handleChange = (e) => {
             const field = e.target.name;
             const value = e.target.value;
@@ -19,6 +19,7 @@ class SignUp extends React.Component {
                 password: this.state.password,
                 confirm: this.state.password
             }, { withCredentials : true }).then(res => res.data).then(data => {
+                console.log(data);
                 if(data.msg === "success"){
                     console.log(data);
                     window.location.href = "/dashboard";
@@ -34,26 +35,35 @@ class SignUp extends React.Component {
     }
     render() {
         const flashes = this.state.flashMessages.map((message, index) => <li key={index}>{message}</li>);
-        if(this.state.display !== true) return <React.Fragment></React.Fragment>;
         return (
-            <div className="bg-gray-600">
-                <ul>{flashes}</ul>
-                <form onSubmit={this.handleSubmit}>
-                    <label>Username : </label>
-                    <input type="text" name="username" value={this.state.username} onChange={this.handleChange}></input>
-                    <br></br>
-                    <label>Password : </label>
-                    <input type="password" name="password" value={this.state.password} onChange={this.handleChange}></input>
-                    <br></br>
-                    <label>Confirm Password : </label>
-                    <input type="password" name="confirm" value={this.state.confirm} onChange={this.handleChange}></input>
-                    <br></br>
-                    <button className ="bg-blue-400" type="submit">Sign Up</button>
+            <div className="float-right mb-80 flex-2 mr-60 max-h-10">
+                <div className="w-full">
+                <form onSubmit={this.handleSubmit} className="bg-black shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                  <div class="mb-4">
+                    <label class="block text-white text-sm font-bold mb-2" for="username">
+                      Username
+                    </label>
+                    <input onChange={this.handleChange} value={this.state.username} name="username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" />
+                  </div>
+                  <div class="mb-4">
+                    <label class="block text-white text-sm font-bold mb-2" for="password">
+                      Password
+                    </label>
+                    <input onChange={this.handleChange} value={this.state.password} name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************" />
+                  </div>
+                  <div className="mb-6">
+                    <label class="block text-white text-sm font-bold mb-2" for="password">
+                        Confirm Password
+                    </label>
+                    <input onChange={this.handleChange} value={this.state.confirm} name="confirm" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="confirm" type="password" placeholder="******************" />
+                  </div>
+                  <div class="flex items-center justify-between mx-20">
+                    <button type="submit" id="navAction" className="mx-50 bg-white lg:mx-0 hover:underline text-gray-800 font-extrabold rounded mt-4 lg:mt-0 py-4 px-8 shadow opacity-100">
+                        Sign Up
+                    </button>
+                  </div>
                 </form>
-                <br></br>
-                <br></br>
-                <span>Already have an account? </span>
-                <button onClick={this.logIn}>Log In</button>
+              </div>
             </div>
         );
     }

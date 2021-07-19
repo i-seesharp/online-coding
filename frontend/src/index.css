@@ -1,3 +1,68 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.body {
+    display: flex;
+    padding: 50px;
+    min-height: 100vh;
+    background: #343434;
+}
+
+.wrapper {
+    padding-top: 30px;
+    padding-left: 100px;
+    left: -50px; 
+}
+
+.wrapper .static-txt {
+    color: #000;
+    top: -10px;
+    font-size: 60px;
+    font-weight: 500;
+}
+
+.wrapper .dynamic-txts {
+    margin-left: 15px;
+    height: 72px;
+    line-height: 70px;
+    background: white;
+    overflow: hidden;
+}
+
+.dynamic-txts li {
+    color: black;
+    list-style: none;
+    font-size: 60px;
+    font-weight: 400;
+    position: relative;
+    margin-bottom: 50px;
+    top: 0;
+    animation: slide 18s steps(6) infinite;
+}
+@keyframes slide {
+    100% {
+        top: -720px;
+    }
+}
+.dynamic-txts li span {
+    position: relative;
+
+}
+.dynamic-txts li span::after {
+    content: "";
+    position: absolute;
+    left : 0;
+    height: 100%;
+    width: 100%;
+    background: #fff;
+    border-left: 2px solid #000;
+    animation: typing 3s steps(27) infinite;
+}
+
+@keyframes typing {
+    100% {
+        left: 100%;
+        margin: 0 -35px 0 35px;
+    }
+}
