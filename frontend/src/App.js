@@ -4,6 +4,7 @@ import Dashboard from "./Dashboard";
 import Landing from "./Landing";
 import Problem from "./Problem";
 import NotFound from "./NotFound";
+import "./index.css";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 

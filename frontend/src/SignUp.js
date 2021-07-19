@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { api } from "./variables";
+import "./index.css";
 
 class SignUp extends React.Component {
     constructor(props) {
@@ -26,12 +27,16 @@ class SignUp extends React.Component {
                 }
             });
         }
+        this.logIn = (e) => {
+            e.preventDefault();
+            window.location.href = "/";
+        }
     }
     render() {
         const flashes = this.state.flashMessages.map((message, index) => <li key={index}>{message}</li>);
         if(this.state.display !== true) return <React.Fragment></React.Fragment>;
         return (
-            <div>
+            <div className="bg-gray-600">
                 <ul>{flashes}</ul>
                 <form onSubmit={this.handleSubmit}>
                     <label>Username : </label>
@@ -43,8 +48,12 @@ class SignUp extends React.Component {
                     <label>Confirm Password : </label>
                     <input type="password" name="confirm" value={this.state.confirm} onChange={this.handleChange}></input>
                     <br></br>
-                    <button type="submit">Sign Up</button>
+                    <button className ="bg-blue-400" type="submit">Sign Up</button>
                 </form>
+                <br></br>
+                <br></br>
+                <span>Already have an account? </span>
+                <button onClick={this.logIn}>Log In</button>
             </div>
         );
     }
