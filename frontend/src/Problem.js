@@ -1,11 +1,12 @@
 import React from "react";
 import { api, defaultQuestionId } from "./variables";
 import axios from "axios";
-
+import  queryString  from "query-string";
 class Problem extends React.Component {
     constructor(props){
         super(props);
-        const question = this.props.question || defaultQuestionId;
+        const parsedQuery = queryString.parse(this.props.location.search);
+        const question = parsedQuery.question || defaultQuestionId;
         this.state = {username : "", display : false, question : question};
     }
     render() {
