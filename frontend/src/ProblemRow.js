@@ -26,23 +26,23 @@ class ProblemRow extends React.Component {
         if(this.state.difficulty === "medium") color = "bg-yellow-500";
         if(this.state.difficulty === "hard") color = "bg-red-700";
         return (
-            <tr onClick={this.goToProblem} class="cursor-pointer text-black bg-gray-500 hover:bg-gray-900 hover:text-white">
-                <td class="p-3">
-                    <div class="flex align-items-center">
-                        <div class="ml-3">
-                            <div class=" items-center text-center">{this.state.id}</div>
+            <tr onClick={this.goToProblem} className="cursor-pointer text-black bg-gray-500 hover:bg-gray-900 hover:text-white">
+                <td className="p-3">
+                    <div className="flex align-items-center">
+                        <div className="ml-3">
+                            <div className=" items-center text-center">{this.state.id}</div>
                         </div>
                     </div>
                 </td>
-                <td class="p-3">
+                <td className="p-3">
                     {this.state.title}
                 </td>
-                <td class="p-3">
-                    <span class={`${color} text-gray-50 rounded-md px-2`}>{this.state.difficulty}</span>
+                <td className="p-3">
+                    <span className={`${color} text-gray-50 rounded-md px-2`}>{this.state.difficulty}</span>
                 </td>
-                <td class="p-3 ">
-                    <a href="/" class="mr-2">
-                        <i class="material-icons-outlined text-base">{this.state.acceptance}</i>
+                <td className="p-3 ">
+                    <a href="/" className="mr-2">
+                        <i className="material-icons-outlined text-base">{this.state.acceptance}</i>
                     </a>
                 </td>
             </tr>

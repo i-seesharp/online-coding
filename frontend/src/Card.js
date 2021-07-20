@@ -14,12 +14,12 @@ class Card extends React.Component {
     }
     render() {
         return (
-        <div class={`w-full shadow-lg hover:shadow-2xl bg-gray-700 border-l-8 hover:${this.state.hover} border-red-vibrant-dark mb-2 p-2 w-1/5 mx-2`}>
-            <div class="p-4 flex flex-col">
-                <a href="#" class="no-underline text-white text-2xl">
+        <div className={`w-full shadow-lg hover:shadow-2xl bg-gray-700 border-l-8 hover:${this.state.hover} border-red-vibrant-dark mb-2 p-2 w-1/5 mx-2`}>
+            <div className="p-4 flex flex-col">
+                <a href="#" className="no-underline text-white text-2xl">
                     {this.state.solved}
                 </a>
-                <a href="#" class="no-underline text-white text-lg">
+                <a href="#" className="no-underline text-white text-lg">
                     Solved : {this.state.tag}
                 </a>
             </div>

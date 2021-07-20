@@ -13,7 +13,8 @@ class Problems extends React.Component {
             const value = e.target.value;
             this.setState({ [field] : value , 
                 problems : this.problems.filter((problem) => {
-                    return problem.title.includes(value);
+                    return problem.title.toLowerCase().includes(value.toLowerCase())
+                        || problem.title.toUpperCase().includes(value.toUpperCase());
                 })
             });
         }
@@ -37,23 +38,23 @@ class Problems extends React.Component {
     }
     render() {
         let problems = this.state.problems.map((problem, index) => {
-            return <ProblemRow id={index+1} title={problem.title} difficulty={problem.difficulty}
+            return <ProblemRow key={index} id={index+1} title={problem.title} difficulty={problem.difficulty}
                         acceptance={problem.acceptance} url={problem.url} />
         });
         return (
-                <div class="">
-                    <div class="pt-2 relative mx-auto text-gray-600">
-                        <input class="border-2 border-gray-300 bg-white w-96 h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+                <div className="">
+                    <div className="pt-2 relative mx-auto text-gray-600">
+                        <input className="border-2 border-gray-300 bg-white w-96 h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
                         type="search" name="search" placeholder="Search" value={this.state.search} onChange={this.handleChange} />
                     </div>
-                    <div class=" relative top-10 overflow-auto lg:overflow-visible ">
-                        <table class="pb-5 bg-transparent table text-gray-400 border-separate space-y-6 text-sm w-full">
-                            <thead class="bg-gray-800 text-gray-100">
+                    <div className=" relative top-10 overflow-auto lg:overflow-visible ">
+                        <table className="pb-5 bg-transparent table text-gray-400 border-separate space-y-6 text-sm w-full">
+                            <thead className="bg-gray-800 text-gray-100">
                                 <tr>
-                                    <th class="p-3">ID</th>
-                                    <th class="p-3 text-left">Problem</th>
-                                    <th class="p-3 text-left">Difficulty</th>
-                                    <th class="p-3 text-left">Acceptance</th>
+                                    <th className="p-3">ID</th>
+                                    <th classNameName="p-3 text-left">Problem</th>
+                                    <th className="p-3 text-left">Difficulty</th>
+                                    <th className="p-3 text-left">Acceptance</th>
                                 </tr>
                             </thead>
                             <tbody>
