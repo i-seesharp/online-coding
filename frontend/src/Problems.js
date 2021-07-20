@@ -6,13 +6,24 @@ import ProblemRow from "./ProblemRow";
 class Problems extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { username : this.props.username || "", problems : [], query : "" };
+        this.state = { username : this.props.username || "", problems : [], search : ""};
+        this.problems = [];
+        this.handleChange = (e) => {
+            const field = e.target.name;
+            const value = e.target.value;
+            this.setState({ [field] : value , 
+                problems : this.problems.filter((problem) => {
+                    return problem.title.includes(value);
+                })
+            });
+        }
         this.getProblems = () => {
             axios.get(api+"/problems", {
                 withCredentials: true,
-                query: this.state.query
+                query: this.state.search
             }).then(res => res.data).then(data => {
                 if(data.msg === "success") {
+                    this.problems = data.problems;
                     this.setState({ problems : data.problems });
                 }else {
                     console.log(data);
@@ -25,10 +36,18 @@ class Problems extends React.Component {
         return state;
     }
     render() {
+        let problems = this.state.problems.map((problem, index) => {
+            return <ProblemRow id={index+1} title={problem.title} difficulty={problem.difficulty}
+                        acceptance={problem.acceptance} url={problem.url} />
+        });
         return (
                 <div class="">
-                    <div class="overflow-auto lg:overflow-visible ">
-                        <table class="bg-transparent table text-gray-400 border-separate space-y-6 text-sm w-full">
+                    <div class="pt-2 relative mx-auto text-gray-600">
+                        <input class="border-2 border-gray-300 bg-white w-96 h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+                        type="search" name="search" placeholder="Search" value={this.state.search} onChange={this.handleChange} />
+                    </div>
+                    <div class=" relative top-10 overflow-auto lg:overflow-visible ">
+                        <table class="pb-5 bg-transparent table text-gray-400 border-separate space-y-6 text-sm w-full">
                             <thead class="bg-gray-800 text-gray-100">
                                 <tr>
                                     <th class="p-3">ID</th>
@@ -38,7 +57,7 @@ class Problems extends React.Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                <ProblemRow id={1} title={"Two Sum"} difficulty={"easy"} acceptance={"40%"} url ={"p8b678v51gy09"}/>
+                                {problems}
                             </tbody>
                         </table>
                     </div>

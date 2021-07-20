@@ -29,6 +29,7 @@ const logoutRoute = path.join(__dirname, "routes", "logout.js");
 const authenRoute = path.join(__dirname, "routes", "authenticated.js");
 const signupRoute = path.join(__dirname, "routes", "signup.js");
 const statsRoute = path.join(__dirname, "routes", "statistics.js");
+const problemsRoute  = path.join(__dirname, "routes", "problems.js");
 
 app.use((req, res, next) => {
     console.log(req.url);
@@ -41,6 +42,7 @@ app.use("/logout", require(logoutRoute));
 app.use("/authenticated", require(authenRoute));
 app.use("/signup", require(signupRoute));
 app.use("/statistics", require(statsRoute));
+app.use("/problems", require(problemsRoute));
 
 server.listen(PORT, () => {
     console.log("Listening on port : "+PORT);

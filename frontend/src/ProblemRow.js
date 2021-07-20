@@ -1,4 +1,3 @@
-import { throws } from "assert";
 import React from "react";
 
 class ProblemRow extends React.Component {
@@ -23,6 +22,9 @@ class ProblemRow extends React.Component {
         return state;
     }
     render() {
+        let color = "bg-green-700";
+        if(this.state.difficulty === "medium") color = "bg-yellow-500";
+        if(this.state.difficulty === "hard") color = "bg-red-700";
         return (
             <tr onClick={this.goToProblem} class="cursor-pointer text-black bg-gray-500 hover:bg-gray-900 hover:text-white">
                 <td class="p-3">
@@ -36,7 +38,7 @@ class ProblemRow extends React.Component {
                     {this.state.title}
                 </td>
                 <td class="p-3">
-                    <span class="bg-green-400 text-gray-50 rounded-md px-2">{this.state.difficulty}</span>
+                    <span class={`${color} text-gray-50 rounded-md px-2`}>{this.state.difficulty}</span>
                 </td>
                 <td class="p-3 ">
                     <a href="/" class="mr-2">
