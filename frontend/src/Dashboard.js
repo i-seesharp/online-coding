@@ -99,8 +99,8 @@ class Dashboard extends React.Component {
                         </div>
                     </div>
                 </nav>
-                <h1 className="font-bold relative left-72 top-10 text-2xl">Welcome @{this.state.username}, </h1>
-                <div className="relative top-20 left-96">
+                <h1 className="max-w-screen-md font-bold relative left-72 top-10 text-2xl">Welcome @{this.state.username}, </h1>
+                <div className=" max-w-screen-lg relative top-20 left-96">
                     <Solved username={this.state.username} />
                 </div>
             </React.Fragment>      

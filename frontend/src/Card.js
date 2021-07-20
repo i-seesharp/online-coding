@@ -6,6 +6,12 @@ class Card extends React.Component {
         this.state = { solved : this.props.solved || 0,
              tag : this.props.tag || "", hover : this.props.hover || "bg-gray-700"};
     }
+    static getDerivedStateFromProps(props, state) {
+        state.solved = props.solved;
+        state.tag = props.tag;
+        state.hover = props.hover;
+        return state;
+    }
     render() {
         return (
         <div class={`w-full shadow-lg hover:shadow-2xl bg-gray-700 border-l-8 hover:${this.state.hover} border-red-vibrant-dark mb-2 p-2 w-1/5 mx-2`}>
