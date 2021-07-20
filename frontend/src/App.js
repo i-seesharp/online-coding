@@ -1,5 +1,4 @@
 import React from "react";
-import SignUp from "./SignUp";
 import Dashboard from "./Dashboard";
 import Landing from "./Landing";
 import Problem from "./Problem";
