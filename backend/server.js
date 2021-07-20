@@ -29,6 +29,11 @@ const logoutRoute = path.join(__dirname, "routes", "logout.js");
 const authenRoute = path.join(__dirname, "routes", "authenticated.js");
 const signupRoute = path.join(__dirname, "routes", "signup.js");
 
+app.use((req, res, next) => {
+    console.log(req.url);
+    next();
+});
+
 app.use("/", require(homeRoute));
 app.use("/login", require(loginRoute));
 app.use("/logout", require(logoutRoute));
