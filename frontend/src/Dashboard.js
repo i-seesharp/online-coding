@@ -2,6 +2,7 @@ import React from "react";
 import { api } from "./variables";
 import axios  from "axios";
 import Solved from "./Solved";
+import Problems from "./Problems";
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -100,8 +101,11 @@ class Dashboard extends React.Component {
                     </div>
                 </nav>
                 <h1 className="max-w-screen-md font-bold relative left-72 top-10 text-2xl">Welcome @{this.state.username}, </h1>
-                <div className=" max-w-screen-lg relative top-20 left-96">
+                <div className=" max-w-screen-lg relative top-20 left-80">
                     <Solved username={this.state.username} />
+                </div>
+                <div className="relative left-80 top-40 w-2/3">
+                    <Problems username={this.state.username}/>
                 </div>
             </React.Fragment>      
         );
