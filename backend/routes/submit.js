@@ -22,7 +22,8 @@ router.get("/9hr9jc90rc9h", (req, res) => {
         exec("g++ "+solutionPath+" "+path.join(cpp, "two_sum.cpp")+" && a.exe", { timeout : 10000 }, (err, stdout, stderr) => {
             if(err){
                 console.log(err);
-                return res.json({ msg : "failure", output: "Time Limit Exceeded\n>>" });
+                if(err.killed === true) return res.json({ msg : "failure", output: "Time Limit Exceeded\n>>" });
+                else return res.json({ msg : "failure", output : err.message});
             }else if(stderr) {
                 return res.json({ msg : "failure", output: stderr });
             }
@@ -34,7 +35,8 @@ router.get("/9hr9jc90rc9h", (req, res) => {
         exec("cd "+path.join(java)+" && javac Solution.java TwoSum.java"+" && java TwoSum", { timeout : 10000 }, (err, stdout, stderr) => {
             if(err){
                 console.log(err);
-                return res.json({ msg : "failure", output: "Time Limit Exceeded\n>>" });
+                if(err.killed === true) return res.json({ msg : "failure", output: "Time Limit Exceeded\n>>" });
+                else return res.json({ msg : "failure", output : err.message});
             }else if(stderr) {
                 return res.json({ msg : "failure", output: stderr });
             }

@@ -46,6 +46,7 @@ def main():
             print("Expected : ")
             print(expected)
             break
+        i = i + 1
     return 0
 
 if __name__ == "__main__":
