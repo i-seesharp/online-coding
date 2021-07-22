@@ -16,8 +16,9 @@ class Problem extends React.Component {
         super(props);
         this.parsedQuery = queryString.parse(this.props.location.search);
         const question = this.parsedQuery.question || defaultQuestionId;
-        this.state = {username : "", display : false, question : question, code: "", output: ">> Test Cases Passed",
-                        title: "", language : "C++", font: "15px", mode: "c_cpp", templates : {} };
+        this.state = {username : "", display : false, question : question, code: "", output: ">>",
+                        title: "", language : "C++", font: "15px", mode: "c_cpp", templates : {} ,
+                        description: ""};
         this.handleChange = (e) => {
             this.setState({ code : e });
         }
@@ -43,12 +44,19 @@ class Problem extends React.Component {
         if(this.state.display !== true) return <React.Fragment></React.Fragment>;
         return (
             <div className="flex overflow-hidden">
-                <div className="overflow-hidden relative bg-gray-700 w-1/2 h-auto">
-                    <div className="w-full h-full m-12">
-                        <h1 className="text-white text-3xl font-extrabold">{this.state.title}</h1>
+                <div className="overflow-hidden relative bg-gray-700 w-5/12 h-10/12">
+                    <button onClick = {() => window.location.href = "/dashboard"}className="hover:shadow-inner hover:bg-black hover:text-white text-black mt-5 ml-10 rounded-lg p-2 bg-white">
+                        {"< Back to Dashboard"}
+                    </button>
+                    <div className="w-full h-full m-12 text-white">
+                        <h1 className="text-3xl font-extrabold">{this.state.title}</h1>
+                        <div className=" w-10/12 break-words mt-10 h-full">
+                            <textarea readOnly className=" focus:outline-none resize-none w-full h-full bg-gray-700 overflow-ellipsis overflow-hidden"
+                                value={this.state.description}></textarea>  
+                        </div>
                     </div>
                 </div>
-                <div className="relative w-1/2 overflow-hidden">
+                <div className="relative w-7/12 overflow-hidden">
                     <div className="flex flex-row justify-center pt-2 pb-2 bg-gray-700">
                         <div>
                             <div class="dropdown">
