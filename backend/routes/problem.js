@@ -23,7 +23,8 @@ router.get("/", (req, res) => {
             }
             db.close();
             return res.json( { msg : "success", title : result.title, difficulty : result.difficulty,
-                    acceptance : result.acceptance, templates : result.templates });
+                    acceptance : result.acceptance, templates : result.templates,
+                     description :  result.description });
         });
     });
 });

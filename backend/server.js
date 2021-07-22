@@ -31,6 +31,7 @@ const signupRoute = path.join(__dirname, "routes", "signup.js");
 const statsRoute = path.join(__dirname, "routes", "statistics.js");
 const problemsRoute  = path.join(__dirname, "routes", "problems.js");
 const problemRoute = path.join(__dirname, "routes", "problem.js");
+const submitRoute = path.join(__dirname, "routes", "submit.js");
 
 app.use((req, res, next) => {
     console.log(req.url);
@@ -45,6 +46,7 @@ app.use("/signup", require(signupRoute));
 app.use("/statistics", require(statsRoute));
 app.use("/problems", require(problemsRoute));
 app.use("/problem", require(problemRoute));
+app.use("/submit", require(submitRoute));
 
 server.listen(PORT, () => {
     console.log("Listening on port : "+PORT);

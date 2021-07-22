@@ -39,6 +39,16 @@ class Problem extends React.Component {
             console.log(e);
             this.setState( { font : e.target.innerText });
         }
+        this.handleSubmit = (e) => {
+            axios.get(api+"/submit/"+this.state.question, {
+                withCredentials : true,
+                params : {code : this.state.code,
+                            language : this.state.language }
+            }).then(res =>  res.data).then(data => {
+                console.log(data);
+                this.setState({ output : data.output });
+            });
+        }
     }
     render() {
         if(this.state.display !== true) return <React.Fragment></React.Fragment>;
@@ -86,8 +96,8 @@ class Problem extends React.Component {
                         onChange={this.handleChange} />
                     <div className="flex flex-row justify-end px-5 pt-2">
                         
-                        <button className="mr-5 h-8 bg-gray-200 hover:bg-gray-700 hover:text-white shadow-xl rounded-lg px-5">Run Example Tests</button>
-                        <button className=" h-8 bg-gray-200 hover:bg-green-700 hover:text-white shadow-xl rounded-lg px-5">Submit Code</button>
+                        <button onClick={this.handleSubmit} className="mr-5 h-8 bg-gray-200 hover:bg-gray-700 hover:text-white shadow-xl rounded-lg px-5">Run Example Tests</button>
+                        <button onClick={this.handleSubmit} className=" h-8 bg-gray-200 hover:bg-green-700 hover:text-white shadow-xl rounded-lg px-5">Submit Code</button>
                     </div>
                     
                     <textarea
@@ -117,7 +127,7 @@ class Problem extends React.Component {
             }).then(res => res.data).then(data => {
                 console.log(data);
                 if(data.msg === "success") this.setState({ display: true, username: user, title: data.title,
-                            templates : data.templates, code : data.templates["c_cpp"] });
+                            templates : data.templates, code : data.templates["c_cpp"], description : data.description });
                 else window.location.href = "/";
             })
             
